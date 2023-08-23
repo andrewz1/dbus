@@ -111,6 +111,11 @@ func standardMethodArgumentDecode(m Method, sender string, msg *Message, body []
 	pointers := make([]interface{}, m.NumArguments())
 	decode := make([]interface{}, 0, len(body))
 
+	fmt.Printf("num: %d, %d\n", m.NumArguments(), m.NumReturns())
+	for i := 0; i < m.NumArguments(); i++ {
+		fmt.Printf("%d: %T\n", i, m.ArgumentValue(i))
+	}
+
 	for i := 0; i < m.NumArguments(); i++ {
 		tp := reflect.TypeOf(m.ArgumentValue(i))
 		val := reflect.New(tp)
